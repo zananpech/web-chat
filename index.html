@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>web-chat</title>
+    <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+  <div id="chat">     
+    <div id="messages"></div>
+    <form id="send-message">
+      <input id="chat-txt" type="text" placeholder="Aa"/>
+      <button id="chat-btn" type="submit">Send</button>
+    </form>      
+</div>    
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCqfG0ACd1mXsy5Asyp_Z9cYoLNued6XKc",
+    authDomain: "web-chat-c2f83.firebaseapp.com",
+    projectId: "web-chat-c2f83",
+    storageBucket: "web-chat-c2f83.appspot.com",
+    messagingSenderId: "303351949059",
+    appId: "1:303351949059:web:af36e791808b307cea2b36"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  //dbRef.on('value', snap => bigOne.innerText = snap.val());
+  const room = prompt("Enter the room code");
+  const username = prompt("What's your name?");
+
+  document.getElementById("send-message").addEventListener("submit", postChat);
+function postChat(e) {
+  e.preventDefault();
+  const timestamp = Date.now();
+  const chatTxt = document.getElementById("chat-txt");
+  const message = chatTxt.value;
+  chatTxt.value = "";
+  db.ref(room + "/" + "messages/" + timestamp).set({
+    usr: username,
+    msg: message,
+  });
+}
+
+const fetchChat = db.ref(room + "/" + "messages/");
+fetchChat.on("child_added", function (snapshot) {
+  const messages = snapshot.val();
+  var msg;
+  if(messages.usr == username)
+  {
+     msg =  "<div id='my_message'>" + messages.msg + "</div>";
+  }
+  else{
+     msg ="<h3>" + messages.usr + "</h3>" + "<div id='your_message'>" + messages.msg + "</div>";
+  }
+  
+  document.getElementById("messages").innerHTML += msg;
+  
+});
+
+
+
+
+  
+</script>
+</body>
+</html>
+

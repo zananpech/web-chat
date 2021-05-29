@@ -1,0 +1,73 @@
+body{
+    background-color: cornflowerblue;
+    margin: 0;
+}
+
+#chat {
+    height: 600px;
+    overflow: auto;
+    overflow-y:auto;
+    background-color: cornflowerblue;
+    outline: none;
+} 
+
+#chat-btn{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 10em;
+    height: 8vh;
+    width: 10em;
+    border-radius: 1em;
+    outline: none;
+    background-color: rgb(15, 119, 238);
+    color: white;
+    font-size: smaller;
+    box-shadow: none;
+    margin: 0.5em;
+}
+
+#chat-txt {
+    position: absolute;
+    border-radius: 0.5em;
+    bottom:0;
+    outline: none;
+    height: 2em;
+    width: 65vw;
+    font-size: 18px;
+    padding: 0.5em;
+    margin: 0.5em;
+    background-color: rgba(248, 248, 255, 0.861);
+}
+
+#your_message{
+
+    border-radius: 0.5em;
+    list-style-type: none;
+    padding: 0.5em;
+    color: black;
+    background-color: aliceblue;
+    position: relative;
+    left: 2vw;
+    display: inline;
+}
+
+#my_message {
+    border-radius: 0.5em;
+    margin: 0.5em;
+    list-style-type: none;
+    padding: 0.5em;
+    color: black;
+    width: 30vw;
+    background-color: bisque;
+    position: relative;
+    left: 65vw;
+}
+
+ul{
+    margin: 0;
+    padding: 0.5em;
+}
+
+
+
